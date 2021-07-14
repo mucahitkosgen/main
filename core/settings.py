@@ -66,12 +66,12 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-        'apps.main',
+    'apps.main',
     'apps.parameter',
     'apps.content',
 
 ]
-tttt
+
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
@@ -104,7 +104,6 @@ TEMPLATES = [
                 'apps.main.context_processors.site',
                 'apps.main.context_processors.menu',
                 'apps.content.context_processors.web_sites',
-
 
             ],
         },
