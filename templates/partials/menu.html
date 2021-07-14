@@ -1,0 +1,24 @@
+{% load i18n %} {% load static %}
+<nav class="collapse">
+    <ul class="nav nav-pills" id="mainNav">
+        {% for content in header_menu_list %}
+        <li class="dropdown">
+            <a class="dropdown-item dropdown-toggle" href="{% if content.link %}{{ content.link }}{% else %}#{% endif %}">
+                    {{ content }}
+                </a> {% if content.menuList %}
+            <ul class="dropdown-menu">
+                {% for subContent in content.menuList.all %}
+                <li>
+                    <a class="dropdown-item" href="{% if subContent.link %}{{ subContent.link }}{% else %}#{% endif %}">
+                                    {{ subContent }}
+                                </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </li>
+        {% endfor %}
+
+    </ul>
+
+</nav>

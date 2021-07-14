@@ -1,0 +1,134 @@
+{% extends 'base_info.html' %}
+{% load static %}
+{% block bg_image %}
+    <picture>
+        <source srcset="{% static 'img/genel/banner2.jpg' %}" media="(min-width: 992px)"/>
+        <img class="img--bg" src="{% static 'img/genel/banner2.jpg' %}" alt="img"/>
+    </picture>
+{% endblock %}
+{% block title %}
+    <h1 class="promo-primary__title"><span>{{ announcement.text }}</span> <span></span></h1>
+{% endblock %}
+
+{% block content_section %}
+    <section class="section donation"><img class="donation__bg" src="{% static 'img/donation_img.png' %}" alt="img">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="donation-item">
+                        {% if announcement.bg_image %}
+                            <div class="donation-item__img"><img class="img--bg"
+                                                                 src="{{ announcement.bg_image_url }}"
+                                                                 alt="img"/></div>
+                        {% endif %}
+                        <div class="donation-item__body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="donation-item__title">{{ announcement.text }}</h5>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col-lg-12">
+                                    <p>{{ announcement.content|safe }}</p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section causes causes--style-2"><img class="causes__bg"
+                                                         src="{% static 'img/genel/alt_gorsel_4.png' %}" alt="img"
+                                                         style="opacity: 0.1;">
+        <div class="container">
+            <div class="row align-items-end margin-bottom">
+                <div class="col-md-6 col-xl-5">
+                    <div class="heading heading--primary no-margin-bottom">
+                        <h2 class="heading__title no-margin-bottom"><span>Benzer</span> <span>Çağrılar</span></h2>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-6 offset-xl-1 d-flex justify-content-md-end">
+                    <!-- slider nav start-->
+                    <div class="slider__nav causes-slider__nav">
+                        <div class="slider__arrows">
+                            <div class="slider__prev slick-arrow slick-hidden" aria-disabled="true" tabindex="-1"><i
+                                    class="fa fa-chevron-left" aria-hidden="true"></i>
+                            </div>
+                            <div class="slider__next slick-arrow slick-hidden" aria-disabled="true" tabindex="-1"><i
+                                    class="fa fa-chevron-right" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- slider nav end-->
+                </div>
+            </div>
+        </div>
+        <div class="causes-holder offset-margin">
+            <div class="causes-holder__wrapper">
+                <div class="causes-slider offset-margin slick-initialized slick-slider">
+                    <div class="slick-list draggable">
+                        <div class="slick-track"
+                             style="opacity: 1; width: 1012px; transform: translate3d(0px, 0px, 0px);">
+
+                            {% for similar_call in similar_calls %}
+                                <div class="slick-slide slick-current slick-active" data-slick-index="0"
+                                     aria-hidden="false"
+                                     style="width: 476px;">
+                                    <div>
+                                        <div class="causes-slider__item" style="width: 100%; display: inline-block;">
+                                            <div class="causes-item causes-item--primary">
+                                                <div class="causes-item__body">
+                                                    <div class="causes-item__top">
+                                                        <h6 class="causes-item__title"><a
+                                                                href="{{ similar_call.get_absolute_url }}"
+                                                                tabindex="0">{{ similar_call.text }}</a>
+                                                        </h6>
+                                                        <style>
+                                                            p {
+                                                                display: -webkit-box;
+                                                                -webkit-line-clamp: 3;
+                                                                -webkit-box-orient: vertical;
+                                                                overflow: hidden;
+                                                            }
+                                                        </style>
+                                                        <p>{{ similar_call.summary }}</p>
+                                                    </div>
+                                                    <div class="causes-item__img">
+                                                        <div class="causes-item__badge"
+                                                             style="background-color: {{ similar_call.color }}">
+                                                            {{ similar_call.category.text }}
+                                                        </div>
+                                                        <img class="img--bg"
+                                                             src="{{ similar_call.bg_image_url }}"
+                                                             alt="img">
+                                                    </div>
+
+                                                </div>
+                                                <a class="button causes-item__button button--primary"
+                                                   href="{{ similar_call.get_absolute_url }}" tabindex="0">+ Devamını
+                                                    Oku</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock content_section %}
+
+{% block extra_script %}
+{% endblock extra_script %}

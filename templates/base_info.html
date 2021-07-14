@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block extra_css %}
+    <link href="{% static 'css/lightbox.min.css' %}" rel="stylesheet"/>
+{% endblock extra_css %}
+{% block content %}
+    <div class="container-fluid"
+         style="background-image:url('{% static 'src/img/header-bg-1.png' %}'); background-size:cover;">
+        <div class="container">
+            <div class="row">
+                <div class="header-content">
+                    <div class="header-content-text">
+                        {% block title %}
+                            <h2>Mavi Gezegen </h2>
+                        {% endblock %}
+                    </div>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'content:t3bilimturkiye:main' %}">Anasayfa</a></li>
+                            {% block title_path %}
+                                <li class="breadcrumb-item"><a href="{% url 'content:t3bilimturkiye:workshops' %}">Workshops</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Mavi Gezegen</li>
+                            {% endblock %}
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {% block content_section %}
+
+    {% endblock %}
+
+
+    {% block end_info %}
+
+    {% endblock end_info %}
+
+
+{% endblock content %}
+
+
+{% block extra_script %}
+
+
+
+    <script src="{% static 'js/lightbox.min.js' %}"></script>
+
+    <script src="{% static 'js/lightbox-plus-jquery.min.js' %}"></script>
+
+
+
+
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/smart-mobile-menu.min.js' %}"></script>
+    <script>
+        $('#open_mobile_menu').smobileMenu({
+            dropdown: true,
+            getMenu: '#menu'
+        });
+    </script>
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+
+
+
+    <script>
+        var $cols = $('button.general-btn-big').click(function (e) {
+
+            $(".select-liste").css("background-color", "red");
+            $(".select-liste").css("border", "3px solid #fff");
+
+
+        });
+    </script>
+{% endblock extra_script %}

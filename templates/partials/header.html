@@ -1,0 +1,180 @@
+{% load i18n %} {% load static %}
+
+<header>
+
+    <div class="container-fluid top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-end header-top">
+
+                    <div class="social-icon">
+                        <ul>
+                            <a href="https://www.instagram.com/t3bilimtr/" target="_blank">
+                                <li><img src="{% static 'src/img/instagram-icon.svg' %}" alt="Instagram"></li>
+                            </a>
+                            <a href="https://twitter.com/t3bilimtr" target="_blank">
+                                <li><img src="{% static 'src/img/twitter-icon.svg' %}"
+                                         alt="Twitter"></li>
+                            </a>
+                            <a href="https://www.facebook.com/t3vakfibilimtr" target="_blank">
+                                <li><img src="{% static 'src/img/facebook-icon.svg' %}"
+                                         alt="Facebook"></li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div style="background-color:#2d2385;">
+        <div class="container-fluid menu-content"
+             style="background-image:url('{% static 'src/header-bg-2.png' %}');width:100%; background-size:cover;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-12">
+                        <div class="logo">
+                            <a href="{% url 'content:t3bilimturkiye:main' %}">
+                                <img style="width:121px"
+                                     src="{% static 'src/img/BTBeyazLogo.png' %}"
+                                     alt="Bilim Türkiye  Logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-12">
+
+
+                        <ul id="menu" style="clear:both;">
+                            {% for header_menu in header_menu_list %}
+                                <li>
+                                    <a {% if header_menu.view_name %}
+                                        href="{% url  header_menu.view_name %}"
+                                    {% elif header_menu.redirect_link %}
+                                        class="text-danger" href="{{ header_menu.redirect_link }}"
+                                    {% endif %} > {{ header_menu.text|upper }}</a>
+                                    <ul class="level-1" style=" z-index:9999999999;">
+                                        {% for sub_menu in header_menu.menu_list %}
+                                            <li><a {% if sub_menu.slug %}
+                                                href="{{ sub_menu.get_absolute_url }}" style=""
+                                                {% else %}
+                                                href="{% url  sub_menu.view_name %}" style=""
+                                            {% endif %} >{{ sub_menu.text|upper }}</a></li>
+
+                                        {% endfor %}
+                                    </ul>
+
+                                </li>
+                            {% endfor %}
+
+
+                        </ul>
+
+                    </div>
+
+
+                    <button id="open_mobile_menu" type="submit"><img
+                            src="{% static 'src/img/hamburger-menu.svg' %}" alt=""></button>
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+        <form method="post" action="listele.html"/>
+        <div class="container-fluid select-liste" style="height:100%; box-sizing: none;">
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-md-3" style="float:left;">
+                        <div class="select-content">
+                            <img src="{% static 'src/img/smile.svg' %}" alt="">
+                            <select name="yas" class="genel-select ml-3" required style="width: 75%;">
+                                <option value="" selected>Yaş Seçimi</option>
+                                <option value="6">6 Yaş</option>
+                                <option value="7">7 Yaş</option>
+                                <option value="8">8 Yaş</option>
+                                <option value="9">9 Yaş</option>
+                                <option value="10">10 Yaş</option>
+                                <option value="11">11 Yaş</option>
+                                <option value="12">12 Yaş</option>
+                                <option value="13">13 Yaş</option>
+                                <option value="14">14 Yaş</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="select-content">
+                            <img src="{% static 'src/img/smile.svg' %}" alt="">
+                            <select name="il" class="genel-select ml-3" required style="width: 75%;">
+                                <option value="" selected>İl Seçimi</option>
+                                <option value="İstanbul">İstanbul</option>
+                                <option value="Gaziantep">Gaziantep</option>
+                                <option value="Erzurum">Erzurum</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div class="select-content">
+                            <img src="{% static 'src/img/mortarboard.svg' %}" alt="">
+                            <select name="rezalan" class="genel-select ml-3" required style="width: 75%;">
+                                <option value="" selected>Rezervasyon Seçiniz</option>
+                                <option value="Eğitim">Eğitim</option>
+                                <option value="Etkinlik">Etkinlik</option>
+                                <option value="Ziyaret">Ziyaret</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <!--    <div class="col-md-3">
+                            <div class="select-content">
+                                <img src="src/img/hand.svg" alt="">
+                                <select name="egitimkategori" class="genel-select ml-3" required style="width: 75%;">
+                                    <option value="" selected>Rezervasyon Tipi seçinizi</option>
+                                                                </select>
+                            </div>
+                        </div> -->
+
+                    <!--  <div class="col-md-3">
+                          <div class="select-content">
+                              <img src="src/img/hand.svg" alt="">
+                              <select name="egitimkategori" class="genel-select ml-3" required style="width: 75%;">
+                                  <option value="" selected>EĞİTİM</option>
+                                                              </select>
+                          </div>
+                      </div> -->
+
+
+                    <div class="col-md-3 col-6">
+                        <div class="select-content d-flex justify-content-end">
+                            <button type="submit" name="listem" class="btn btn-select" style="margin-left:-10%">
+                                Eğitimleri Listele
+                            </button>
+                            <button name="listem" class="btn btn-select ml-1"
+                                    onclick="window.location.href='/sorgula.html'" style="margin-right:-7%">Rezervasyon
+                                Sorgula
+                            </button>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        </form>
+
+
+    </div>
+</header>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load i18n %} {% load static %} {% load crispy_forms_tags %}
+<head>
+
+    {% block head %}{% include 'partials/head.html' %}{% endblock head %}
+    {% block extra_css %}     <title>Bilim Türkiye</title>{% endblock %}
+</head>
+<body>
+
+{% block header %} {% include 'partials/header.html' %} {% endblock %}
+
+
+{% block content %} {% endblock content %}
+
+<section>
+    <form action="" method="post">
+        <div class="container-fluid parallax-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Bilim Üsküdar’dan Haberiniz Olsun</h2>
+                    </div>
+                    <div class="inputs d-flex justify-content-center align-items-center">
+                        <div class="col-md-6">
+                            <input type="text" class="index-mail-form" placeholder="Eposta" aria-label="Eposta"
+                                   name="eposta" aria-describedby="button-addon1" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="index-mail-form" placeholder="Telefon Numaranız"
+                                   aria-label="Telefon" name="telefon" aria-describedby="button-addon2" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <a href="#">
+                            <button type="submit" name="bildiri" class="btn btn-mail">Kaydet <img
+                                    src="{% static 'src/img/send.svg' %}" alt=""></button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+</section>
+
+
+{% block footer %} {% include 'partials/footer.html' %} {% endblock %}
+{% block extra_script %} {% endblock %}
+{% block scripts %}
+    <img src="{% static 'src/img/icon-up.svg' %}" class="go-top" alt="Bilim Üsküdar">
+
+
+    <!-- Optional JavaScript -->
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script>
+        $(function () {
+
+            $('#menu').find('> li').hover(function () {
+                $(this).find('ul.level-1')
+                    .stop(true, true).slideToggle('fast');
+            });
+
+            $('.level-1').find('> li').hover(function () {
+                $(this).find('ul.level-2')
+                    .stop(true, true).slideToggle('fast');
+            });
+
+        });
+    </script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+    <script>
+
+
+        $('.index-newspaper-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            autoplay: false,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            nav: true,
+            navText: [
+                '<img src="{% static 'src/img/carousel-icon-prev.svg' %}">',
+                '<img src="{% static 'src/img/carousel-icon-next.svg' %}">'
+            ],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 1
+                }
+            }
+        })
+
+    </script>
+
+    <script>
+
+
+        $('.index-navs-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            nav: true,
+            navText: [
+                '<img src="{% static 'src/img/carousel-icon-prev.svg' %}">',
+                '<img src="{% static 'src/img/carousel-icon-next.svg' %}">'
+            ],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        })
+
+    </script>
+
+
+
+    <script>
+
+
+        $('.activity-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            nav: true,
+            navText: [
+                '<img src="{% static 'src/img/carousel-icon-prev.svg' %}">',
+                '<img src="{% static 'src/img/carousel-icon-next.svg' %}">'
+            ],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 2
+                }
+            }
+        })
+
+    </script>
+    <script>
+        var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            loop: true,
+            nav: true,
+            margin: 10,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                960: {
+                    items: 1
+                },
+                1200: {
+                    items: 1
+                }
+            }
+        });
+
+    </script>
+    <script src="{% static 'js/popup1.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+
+            var id = '#dialog';
+
+            var maskHeight = $(document).height();
+            var maskWidth = $(window).width();
+
+            $('#maske').css({'width': maskWidth, 'height': maskHeight});
+
+            $('#maske').fadeIn(500);
+            $('#maske').fadeTo("slow", 0.9);
+
+            var winH = $(window).height();
+            var winW = $(window).width();
+
+            $(id).css('top', winH / 2 - $(id).height() / 2);
+            $(id).css('left', winW / 2 - $(id).width() / 2);
+
+            $(id).fadeIn(2000);
+
+            $('.window .close').click(function (e) {
+                e.preventDefault();
+
+                $('#maske').hide();
+                $('.window').hide();
+            });
+
+            $('#maske').click(function () {
+                $(this).hide();
+                $('.window').hide();
+            });
+
+        });
+
+    </script>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/smart-mobile-menu.min.js' %}"></script>
+    <script>
+        $('#open_mobile_menu').smobileMenu({
+            dropdown: true,
+            getMenu: '#menu'
+        });
+    </script>
+    <script src="{% static 'js/animsition.min.js' %}"></script>
+
+
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myModal").modal('show');
+        });
+    </script>
+
+
+    <script>
+        var $cols = $('button.general-btn').click(function (e) {
+
+            $(".select-liste").css("background-color", "red");
+            $(".select-liste").css("border", "3px solid #fff");
+
+
+        });
+    </script>
+{% endblock scripts %}
+</body>
+</html>

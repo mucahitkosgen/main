@@ -1,0 +1,225 @@
+{% extends "base_info.html" %}
+{% load i18n %}
+{% load static %}
+{% block bg_image %}
+    <picture>
+        <source srcset="{% static 'img/genel/banner2.jpg' %}" media="(min-width: 992px)"/>
+        <img class="img--bg" src="{% static 'img/genel/banner2.jpg' %}" alt="img"/>
+    </picture>
+{% endblock bg_image %}
+
+{% block title %}
+    <h1 class="promo-primary__title"><span>T3 Vakfı</span> <span>Ekibimiz</span></h1>
+{% endblock %}
+{% block content_section %}
+
+
+    <section class="section elements ">
+        <div class="container">
+
+            <div class="tabs horizontal-tabs" align="center">
+                <ul class="horizontal-tabs__header" style="display: inline-flex;">
+                    <li><a href="#horizontal-tabs__item-1" id="tumu"><span>Tümü</span></a></li>
+                    <li><a href="#horizontal-tabs__item-2" id="mutevelli"><span>Mütevelli Heyeti</span></a></li>
+                    <li><a href="#horizontal-tabs__item-3" id="yonetimKurulu"><span>Yönetim Kurulu</span></a></li>
+                </ul>
+            </div>
+
+            <div class="tumu">
+                <br>
+                <center>
+                    <h2 class="heading__title"><span></span><span></span></h2>
+                </center>
+                <div class="row offset-margin">
+
+
+                    {% for member in all_member %}
+                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                            <!-- item start-->
+                            <div class="team-item team-item--primary">
+                                <div class="team-item__img">
+                                    <ul class="team-item__socials">
+
+                                        <li><a href="{{ member.twitter }}" target="_BLANK"><i class="fa fa-twitter"
+                                                                                              aria-hidden="true"></i></a>
+                                        </li>
+                                        <li><a href="{{ member.linkedin }}" target="_BLANK"><i
+                                                class="fa fa-linkedin"
+                                                aria-hidden="true"></i></a>
+                                        </li>
+                                        <li><a href="{{ member.email }}" target="_BLANK"><i
+                                                class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                    <img class="img--bg"
+                                         src="{{ member.photo }}"
+                                         alt="teammate"/>
+                                </div>
+                                <div class="team-item__description">
+                                    <div class="team-item__name"><a
+                                            href="{{ member.get_absolute_url }}">{{ member }}</a>
+                                    </div>
+                                    <div class="team-item__position">
+                                        {{ member.level_list }}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- item end-->
+                        </div>
+
+                    {% endfor %}
+
+
+                </div>
+            </div>
+
+
+            <div class="mutevelli">
+                <br>
+                <center>
+                    <h2 class="heading__title"><span></span><span>Mütevelli Heyeti Üyelerimiz</span></h2>
+                </center>
+                <div class="row offset-margin">
+
+
+                    {% for member in bt %}
+                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                            <!-- item start-->
+                            <div class="team-item team-item--primary">
+                                <div class="team-item__img">
+                                    <ul class="team-item__socials">
+
+                                        <li><a href="{{ member.twitter }}" target="_BLANK"><i class="fa fa-twitter"
+                                                                                              aria-hidden="true"></i></a>
+                                        </li>
+                                        <li><a href="{{ member.linkedin }}" target="_BLANK"><i
+                                                class="fa fa-linkedin"
+                                                aria-hidden="true"></i></a>
+                                        </li>
+                                        <li><a href="{{ member.email }}" target="_BLANK"><i
+                                                class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                    <img class="img--bg"
+                                         src="{{ member.photo }}"
+                                         alt="teammate"/>
+                                </div>
+                                <div class="team-item__description">
+                                    <div class="team-item__name"><a
+                                            href="{{ member.get_absolute_url }}">{{ member }}</a>
+                                    </div>
+                                    <div class="team-item__position">
+                                        {{ member.level_list }}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- item end-->
+                        </div>
+
+                    {% endfor %}
+
+
+                </div>
+            </div>
+
+
+            <div class="yonetimKurulu">
+                <br>
+                <center>
+                    <h2 class="heading__title"><span></span>
+                        <span>Yönetim Kurulu Üyelerimiz</span></h2>
+                </center>
+                <div class="row offset-margin">
+
+
+                    {% for member in bd %}
+                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                            <!-- item start-->
+                            <div class="team-item team-item--primary">
+                                <div class="team-item__img">
+                                    <ul class="team-item__socials">
+
+                                        <li><a href="{{ member.twitter }}" target="_BLANK"><i class="fa fa-twitter"
+                                                                                              aria-hidden="true"></i></a>
+                                        </li>
+                                        <li><a href="{{ member.linkedin }}" target="_BLANK"><i
+                                                class="fa fa-linkedin"
+                                                aria-hidden="true"></i></a>
+                                        </li>
+                                        <li><a href="{{ member.email }}" target="_BLANK"><i
+                                                class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                    <img class="img--bg"
+                                         src="{{ member.photo }}"
+                                         alt="teammate"/>
+                                </div>
+                                <div class="team-item__description">
+                                    <div class="team-item__name"><a
+                                            href="{{ member.get_absolute_url }}">{{ member }}</a>
+                                    </div>
+                                    <div class="team-item__position">
+                                        {{ member.level_list }}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- item end-->
+                        </div>
+
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section elements ">
+        <div class="container">
+
+
+        </div>
+    </section>
+
+
+    <!-- bottom bg start-->
+    <section class="bottom-background">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bottom-background__img"><img src="{% static 'img/genel/alt_gorsel_3.png' %}" alt="img"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- bottom bg end-->
+{% endblock %}
+
+
+{% block extra_script %}
+    <script>
+        $(document).ready(function () {
+            $(".mutevelli").hide();
+            $(".yonetimKurulu").hide();
+            $(".tumu").show();
+
+            $("#mutevelli").click(function () {
+                $(".mutevelli").show();
+                $(".yonetimKurulu").hide();
+                $(".tumu").hide();
+            });
+
+            $("#yonetimKurulu").click(function () {
+                $(".mutevelli").hide();
+                $(".yonetimKurulu").show();
+                $(".tumu").hide();
+            });
+
+            $("#tumu").click(function () {
+                $(".mutevelli").hide();
+                $(".yonetimKurulu").hide();
+                $(".tumu").show();
+            });
+
+
+        });
+    </script>
+{% endblock %}

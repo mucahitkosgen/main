@@ -1,0 +1,392 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% load static %}
+
+
+{% block extra_css %}
+    <body style="background-image: url('{% static 'src/img/bg-index.png' %}');background-size: cover; background-repeat: no-repeat;">
+{% endblock %}
+{% block content %}
+    {#    slider start#}
+    {% block slider %}
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="owl-carousel owl-theme owl-loaded index-carousel">
+
+                            {% for slider in sliders %}
+
+                                <div class="item">
+
+                                    <a href="{{ slider.redirect_link }}">
+                                        <img src="{{ slider.bg_image_url }}">
+
+                                    </a>
+                                </div>
+
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+    {#    slider end#}
+    {#info card start#}
+
+
+    {% include 't3bilimturkiye/index/info_card.html' %}
+
+    {#info card end#}
+
+    {#activity start#}
+    {% block best_activities %}
+        <section>
+            <div class="container">
+                <div class="row head">
+                    <div class="head-content">
+                        <div class="head-text-icon">
+                            <img src="{% static 'src/img/activity-icon.svg' %}" alt="">
+                            <h3>Etkinlikler</h3>
+                        </div>
+                        <a href="{% url 'content:activities' %}" class="hvr-icon-wobble-horizontal">
+                            <button class="head-btn">Tümünü Görüntüle <img src="{% static 'src/img/next-big.svg' %}"
+                                                                           class="hvr-icon" alt="">
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="activity-content">
+
+                        <div class="activity-carousel owl-carousel owl-theme">
+
+
+                            {% for best_activity in best_activities %}
+                                <div class="col-md-12">
+                                    <div class="item">
+                                        <div class="activity-box">
+                                            <div class="activity-box-top">
+                                                <div class="activity-box-left">
+                                                    <div class="date-box">
+                                                        <h3>{{ best_activity.date|date:'d' }}</h3>
+                                                        <p>{% language 'tr-TR' %}
+                                                            {{ best_activity.date|date:'F' }}{% endlanguage %}
+                                                            <br>{{ best_activity.date|date:'Y' }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="activity-box-right">
+                                                    <a href="{{ best_activity.get_absolute_url }}">
+                                                        <h3>{{ best_activity.text }}</h3>
+                                                    </a>
+                                                    <h6>{{ best_activity.creator }}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="activity-box-bottom"><img src="{{ best_activity.get_image_url }}"
+                                                                                  alt="{{ best_activity.summary }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+    {% endblock best_activities %}
+    {#activity end#}
+
+
+    <section>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 index-navs">
+
+
+                    <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-workshops"
+                               role="tab" aria-controls="pills-home" aria-selected="true">ATÖLYELER</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-exhibitions"
+                               role="tab" aria-controls="pills-profile" aria-selected="false">SERGİLER</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-planetariums"
+                               role="tab" aria-controls="pills-contact" aria-selected="false">PLANETARYUM</a>
+                        </li>
+
+                    </ul>
+
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-workshops" role="tabpanel"
+                             aria-labelledby="pills-home-tab">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="index-navs-carousel owl-carousel owl-theme">
+
+                                        {% for item in workshops %}
+
+                                            <div class="item">
+                                                <a href="{{ item.get_absolute_url }}">
+                                                    <div class="card">
+                                                        <img src="{{ item.get_image_url }}"
+                                                             style="max-width:500px; height:250px;" class="card-img-top"
+                                                             alt="{{ item.text }}">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">{{ item.text }}</h5>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                            </div>
+                                        {% endfor %}
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="tab-pane fade" id="pills-exhibitions" role="tabpanel"
+                             aria-labelledby="pills-profile-tab">
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="index-navs-carousel owl-carousel owl-theme">
+
+
+                                        {% for item in exhibitions %}
+
+                                            <div class="item">
+                                                <a href="{{ item.get_absolute_url }}">
+                                                    <div class="card">
+                                                        <img src="{{ item.get_image_url }}"
+                                                             style="max-width:500px; height:250px;" class="card-img-top"
+                                                             alt="{{ item.text }}">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">{{ item.text }}</h5>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                            </div>
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="tab-pane fade" id="pills-planetariums" role="tabpanel"
+                             aria-labelledby="pills-contact-tab">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="index-navs-carousel owl-carousel owl-theme">
+
+                                        {% for item in planetariums %}
+
+                                            <div class="item">
+                                                <a href="{{ item.get_absolute_url }}">
+                                                    <div class="card">
+                                                        <img src="{{ item.get_image_url }}"
+                                                             style="max-width:500px; height:250px;" class="card-img-top"
+                                                             alt="{{ item.text }}">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">{{ item.text }}</h5>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                            </div>
+                                        {% endfor %}
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section>
+        <div class="container">
+            <div class="row head">
+                <div class="head-content">
+                    <div class="head-text-icon">
+                        <img src="{% static 'src/img/activity-icon.svg' %}" alt="">
+                        <h3>Haberler</h3>
+                    </div>
+                    <a href="{% url 'content:news_casts' %}" class="hvr-icon-wobble-horizontal">
+                        <button class="head-btn">Tümünü Görüntüle <img src="{% static 'src/img/next-big.svg' %}"
+                                                                       class="hvr-icon"
+                                                                       alt=""></button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="news-content">
+
+
+                    <div class="index-newspaper-carousel owl-carousel owl-theme">
+
+
+                        {% for news_cast in news_casts %}
+                            <div class="item">
+                                <div class="col-md-12">
+                                    <div class="index-newspaper-content">
+
+                                        <img src="{{ news_cast.bg_image_url }}" style="max-width:540px; height:400px;"
+                                             class="img-fluid img-responsive"
+                                             alt="{{ news_cast.text }}">
+                                        <div class="index-newspaper-text">
+                                            <a href="{{ news_cast.get_absolute_url }}">
+                                                <h3>{{ news_cast.text }}</h3></a>
+                                            <p>{{ news_cast.summary }}</p>
+                                            <a href="{{ news_cast.get_absolute_url }}">
+                                                <button class="general-btn">Haberi Oku <img
+                                                        src="{% static 'src/img/next.svg' %}" alt="">
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        {% endfor %}
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container">
+            <div class="row head">
+                <div class="head-content">
+                    <div class="head-text-icon">
+                        <img src="{% static 'src/img/photo-video.svg' %}" alt="">
+                        <h3>Fotoğraf ve Video Galerisi</h3>
+                    </div>
+                    <a href="{% url 'content:albums' %}" class="hvr-icon-wobble-horizontal">
+                        <button class="head-btn">Tümünü Görüntüle <img src="{% static 'src/img/next-big.svg' %}"
+                                                                       class="hvr-icon">
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section>
+
+
+        <div class="container">
+            <div class="news-content">
+
+                <div class="row">
+                    <div class="index-newspaper-carousel owl-carousel owl-theme">
+
+                        {% for album in albums %}
+                            <div class="item">
+                                <div class="col-md-12">
+                                    <div class="index-photo-content">
+
+                                        <img src="{{ album.get_image_url }}" style="max-width:625px; height:350px;"
+                                             class="img-fluid" alt="{{ album.text }}">
+                                        <div class="index-photo-text">
+
+                                            <h3>{{ album.text }}</h3>
+                                            {{ album.about|safe }}
+
+
+                                            <a href="{{ album.get_absolute_url }}"
+                                               class="d-flex justify-content-end">
+
+                                                <button class="general-btn">Detaylar <img
+                                                        src="{% static 'src/img/next.svg' %}"
+                                                        style="width: 15px;" alt="">
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+
+{% endblock content %}
+
+
+{% block extra_script %}
+{% endblock extra_script %}

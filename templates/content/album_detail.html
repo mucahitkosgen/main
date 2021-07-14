@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+    <section>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="subpage-content">
+                        <div class="news-detail">
+                            <div class="news-detail-text">
+                                <h3>{{ album.text }}</h3>
+                                <p>{{ album.about|safe }}</p>
+                            </div>
+
+
+                        </div>
+                        <!--Galeri Fotoğraflar Başla-->
+
+                        <div class="row">
+
+                          {% for image  in album.get_images %}
+                            <div class="col-md-3">
+                                <a href="{{ image.get_image_url }}" data-lightbox="image-1"><img
+                                        src="{{ image.get_image_url }}" class="img-fluid"
+                                        style="margin: 0 0 20px 0;"></a>
+
+                            </div>
+                          {% endfor %}
+
+
+                        </div>
+
+
+                        <!--Galeri Fotoğraflar Bitiş-->
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </section>
+
+
+
+{% endblock %}
