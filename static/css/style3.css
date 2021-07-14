@@ -1,0 +1,351 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+	position: relative;
+    width: 100%;
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+	direction: ltr;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+body{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding:0;
+}
+.navbar{
+    display:flex;
+    height: 79px;
+    background-color: rgba(249, 249, 249, 1);
+    box-shadow: 1px 4px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.nav-toggle{
+    display: none;
+}
+.toggle-right{
+    display: none;
+}
+.search-box-icon{
+    display: none;
+}
+
+/* ================== header responsive ================= */
+@media screen and (max-width: 1250px){
+    #profil-info{
+        position: absolute;
+        top: 12px;
+        right: 50px;
+    }
+    .input-group{
+        width: 40%;
+    }
+    .left-menu {
+        display: flex;
+		flex-direction: column;
+		position:absolute;
+		top:0px;
+		left: 0px;
+		width: 250px;
+		transform: translateX(-100%);
+        transition: .5s ease all;
+		border-right: 2px solid #EDEDED;
+		z-index: 9;
+        background-color: white;
+    }
+    .nav-toggle{
+        display: block;
+		position:absolute;
+		top: 75px;
+		left: 10px;
+		font-size: 25px;
+		cursor: pointer;
+		z-index: 9;
+    }
+    
+    .right-menu {
+        display:flex;
+		flex-direction: column;
+		position:absolute;
+		top: 30;
+		right: 0;
+		/* width: 75px; */
+	     transform: translateX(100%); 
+        transition: .5s ease all;
+		border: none;
+		z-index: 9;		
+   }
+    .toggle-right{
+       display: block;
+       position:absolute;
+       top: 70px;
+       right: 10px;
+       font-size: 40px;
+       cursor: pointer;
+       z-index: 9;
+   }
+   .show-menu{
+    transform: translateX(0);
+  }
+}
+
+@media screen and (max-width: 770px) {
+    
+  #profil-info{
+    position: absolute;
+    top: 12px;
+}
+  
+  .search-box-icon{
+    position: relative;
+    right: 150px;
+    display: block;
+}
+  .input-group{
+      display: none;
+  }
+}
+@media screen and (max-width: 460px){
+    #profil-info{
+        position: absolute;
+        top: 12px;
+        left: 260px;
+    }
+    .input-group{
+        display: none;
+    }
+    
+}
+#logo1{
+    width: 169px;
+    height: 33px;
+    margin-left: 41px;
+}
+
+#search{
+    width: 477px;
+    height: 38px;
+    border-radius: 30px;
+    color: #ffff;
+}
+
+#isim{
+    font-style: Bold;
+    font-size: 14px;
+    line-height: 15px;
+    fill: black;
+    color: black;
+}
+#hesap{
+    font-style: regular;
+    font-size: 14px;
+    line-height: 17px;
+    fill: black;
+    color: black;
+}
+
+#menü{
+    margin-left: 20px;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -0.015em;
+    text-align: left;
+    color: black;
+}
+
+.left-menu{
+    display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 90px;
+	left: 0;
+    width: 250px;
+    border-right-width: 2px;
+    border-right-style: solid;
+    border-right-color:#EDEDED;
+}
+.right-menu{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    width: 95px;
+    fill: #F9F9F9;
+    box-shadow: -2px 4px 10px 0px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    
+}
+
+
+.section{
+    width: 60%;
+    position: absolute;
+    top: 150px;
+    left: 300px;
+}
+.person-list{
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    fill: solid #FFFFFF;
+    background: rgba(255, 255, 255, 1);
+
+}
+.section h1{
+    position: relative;
+    bottom: 25px;
+    left: 5px;
+    display: inline;
+    height: 37px;
+    width: 245px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 37px;
+    letter-spacing: -0.015em;
+    text-align: left;
+    color: rgba(198, 0, 0, 1);
+    fill: solid #C60000;
+}
+.section .icon{
+    position: relative;
+    bottom: 35px;
+}
+.section .filter{
+    float: right;
+    position: relative;
+    right: 200px;
+    bottom: 50px;
+}
+.section .filter span{
+    position: relative;
+    top: 3px;
+    color: rgba(222, 222, 222, 1);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.015em;
+}
+
+
+.section .person-list ul{
+    width: 100%;
+    
+}
+.section .person-list ul li{
+    margin-bottom: 20px;
+}
+
+.section ul .profil-foto{
+    position: relative;
+    top: 45px;
+    right: 10px;
+}
+
+
+.section ul h3 {
+    position: relative;
+    left: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
+    color: rgba(0, 0, 0, 1);  
+}
+
+.section ul p {
+    position: relative;
+    left: 40px;
+    margin-bottom: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(0, 0, 0, 1);
+    Fill: Solid#000000;
+}
+
+
+
+@media screen and (max-width: 1000px){
+    .person-list{
+        position: relative;
+        right: 150px;
+    }
+
+    .section .title{
+        position: relative;
+        right: 150px;
+    }
+    
+}
+
+@media screen and (max-width: 740px){
+    .section .title h1{
+        font-size: 20px;
+    }
+    .section .title .icon{
+        margin-top: 10px;
+        width: 20px;
+    }
+    .section ul h3 {
+        font-size: 15px;
+    }
+    .section ul p {
+        font-size: 8px;
+    }
+    .section .filter span{
+         font-size: 10px;
+    }
+    .section .filter #icon1{
+        margin-top: 8px;
+        width: 11px;
+    }
+}
+@media screen and (max-width: 520px){
+    .person-list{
+        position: relative;
+        right: 220px;
+    }
+    .section .title{
+        position: relative;
+        right: 220px;
+    }
+    #logo1{
+        width: 50%;
+        height: auto;
+    }
+    #isim{
+        position: relative;
+        right: 40px;
+    }
+    #hesap{
+     position: relative;
+     right: 40px;
+    }
+    #foto{
+     position: relative;
+     right: 70px;
+    }
+}
+
+
