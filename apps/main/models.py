@@ -1,60 +1,77 @@
-from ckeditor.fields import RichTextField
-from django.core.validators import MinValueValidator
-from django.db import models
-from django.urls import reverse
+import datetime
 
+from django.db import models
+from django.utils import timezone
+from django.utils.timezone import utc
 from django.utils.translation import gettext_lazy as _
 
 from apps.common.fileUpload.userPath import userDirectoryPath
 from apps.common.oneTextField import OneTextField
-#from .urlpatterns import urls, validate_slug
+
 from apps.content.models import Announcement
 
+ 
 
-class SiteInfo(OneTextField):
-    keywords = models.TextField(null=True, verbose_name=_('Etiketler'))
-    author = models.CharField(max_length=400, null=True, blank=True, verbose_name=_('Sahip'))
-    favicon = models.ImageField(upload_to=userDirectoryPath, null=True, blank=True,
-                                verbose_name=_('Favicon'))
-    header_logo = models.ImageField(upload_to=userDirectoryPath, null=True, blank=True,
-                                    verbose_name=_('Üst Logo'))
-    footer_logo = models.ImageField(upload_to=userDirectoryPath, null=True, blank=True,
-                                    verbose_name=_('Alt Logo'))
-    address = RichTextField(null=True, verbose_name=_('Adres'))
-    phone_list = RichTextField(null=True, verbose_name=_('Telefonlar'))
-    footer_address = models.TextField(null=True, verbose_name=_('Footer Adres'))
-    copyright = models.TextField(null=True, verbose_name=_('Telif"'))
-    phone = models.CharField(max_length=400, null=True, blank=True, verbose_name=_('Telefon'))
-    facebook = models.URLField(null=True, blank=True, verbose_name=_('Facebook'))
-    twitter = models.URLField(null=True, blank=True, verbose_name=_('Twitter'))
-    instagram = models.URLField(null=True, blank=True, verbose_name=_('Instagram'))
-    telegram = models.URLField(null=True, blank=True, verbose_name=_('Telegram'))
-    bip = models.URLField(null=True, blank=True, verbose_name=_('Bip'))
-    whatsapp = models.URLField(null=True, blank=True, verbose_name=_('Whatsapp'))
-    youtube = models.URLField(null=True, blank=True, verbose_name=_('Youtube'))
-    linkedin = models.URLField(null=True, blank=True, verbose_name=_('Linkedin'))
-    email = models.EmailField(null=True, blank=True, verbose_name=_('Email'))
-    site_url = models.URLField(null=True, blank=True, verbose_name=_('Site Url'))
-  
-    @property
-    def favicon_url(self):
-        if self.favicon and hasattr(self.favicon, 'url'):
-            return self.favicon.url
+
+# Time Counter
+class TimeCounter(OneTextField):
+    
+    summary = models.CharField(max_length=200, blank=True, verbose_name=_('özet'))
+    time_counter = models.DateTimeField()
+    bg_image = models.ImageField(upload_to=userDirectoryPath, null=True, blank=True,
+                                 verbose_name=_('Arkaplan Görsel'))
+    icon = models.ImageField(upload_to=userDirectoryPath, null=True, blank=True,
+                             verbose_name=_('İcon Görsel'))
 
     @property
-    def header_logo_url(self):
-        if self.header_logo and hasattr(self.header_logo, 'url'):
-            return self.header_logo.url
+    def bg_image_url(self):
+        if self.bg_image and hasattr(self.bg_image, 'url'):
+            return self.bg_image.url
 
     @property
-    def footer_logo_url(self):
-        if self.footer_logo and hasattr(self.footer_logo, 'url'):
-            return self.footer_logo.url
+    def icon_url(self):
+        if self.icon and hasattr(self.icon, 'url'):
+            return self.icon.url
+
+    @property
+    def time_counter_diff(self):
+        # TODO : js ile yapılacak ,bitmedi
+        now_2 = timezone.now()
+        now = datetime.datetime.utcnow().replace(tzinfo=utc)
+        now_3 = datetime.datetime.now()
+        counter = 0
+        print("self.time_counter.year", self.time_counter.year)
+        print("self.time_counter.day", self.time_counter.day)
+        print("self.time_counter.hour", self.time_counter.hour)
+        print("self.time_counter.min", self.time_counter.min)
+        print("self.time_counter.second", self.time_counter.second)
+
+        print("self.time_counter :", self.time_counter)
+        print("now :", now)
+        if self.time_counter > now_2:
+            diff = self.time_counter - now_2
+            print("diff :", diff)
+            print("diff :", diff.days)
+            print("diff :", diff.min)
+            print("diff :", diff.seconds)
+            days, seconds = diff.days, diff.seconds
+            hours = days * 24 + seconds // 3600
+            hours_2 = diff.total_seconds() / 3600
+            hours_3 = hours % 24
+            minutes = (seconds % 3600) // 60
+            seconds = seconds % 60
+            print("counter diff :", days, hours, hours_2, hours_3, minutes, seconds)
+            counter = {"days": days, "hours": hours_3, "minutes": minutes, "seconds": seconds}
+
+
+        else:
+            counter = {"days": 0, "hours": 0, "minutes": 0, "seconds": 0}
+
+        return counter
 
     class Meta:
-        ordering = ('text',)
-        verbose_name = _('Site Bilgileri')
-        verbose_name_plural = _('Site Bilgileri')
+        verbose_name = _('Zaman Sayaç')
+        verbose_name_plural = _('Zaman Sayaç')
         default_permissions = ()
         permissions = ((_('liste'), _('Listeleme Yetkisi')),
                        (_('sil'), _('Silme Yetkisi')),
@@ -62,10 +79,29 @@ class SiteInfo(OneTextField):
                        (_('guncelle'), _('Güncelleme Yetkisi')))
 
 
-class MenuLocation(OneTextField):
+# Value Counter
+class ValueCounter(OneTextField):
+    
+    summary = models.CharField(max_length=200, blank=True, verbose_name=_('Özet'))
+    counter_box = models.ManyToManyField("ValueCounterBox", verbose_name=_('Sayaç Değerleri'))
+    bg_image = models.ImageField(upload_to=userDirectoryPath, null=True, blank=True,
+                                 verbose_name=_('Arkaplan Görsel'))
+    icon = models.ImageField(upload_to=userDirectoryPath, null=True, blank=True,
+                             verbose_name=_('İcon Görsel'))
+
+    @property
+    def bg_image_url(self):
+        if self.bg_image and hasattr(self.bg_image, 'url'):
+            return self.bg_image.url
+
+    @property
+    def icon_url(self):
+        if self.icon and hasattr(self.icon, 'url'):
+            return self.icon.url
+
     class Meta:
-        verbose_name = _('Menü Konumu')
-        verbose_name_plural = _('Menü Konumu')
+        verbose_name = _('Değer Sayaç Section')
+        verbose_name_plural = _('Değer Sayaç Section')
         default_permissions = ()
         permissions = ((_('liste'), _('Listeleme Yetkisi')),
                        (_('sil'), _('Silme Yetkisi')),
@@ -73,28 +109,20 @@ class MenuLocation(OneTextField):
                        (_('guncelle'), _('Güncelleme Yetkisi')))
 
 
-import operator
-from itertools import chain
+# Value Counter Box
+class ValueCounterBox(OneTextField):
+    counter = models.CharField(max_length=200, blank=True, verbose_name=_('Sayaç Değeri'))  # integar veya charfield
+    icon = models.ImageField(upload_to=userDirectoryPath, null=True, blank=True,
+                             verbose_name=_('İcon Görsel'))  # image veya charfield (icon class tag )
 
-
-# Menus
-class Menu(OneTextField):
-    menu_location = models.ForeignKey(MenuLocation, null=True, blank=True, on_delete=models.PROTECT,
-                                      related_name='menus',
-                                      verbose_name=_("Menü Konumu"))
-
-    view_name = models.CharField(max_length=200, unique=True,
-                                 blank=True, null=True, verbose_name="Görünüm Adı")
-    alignment = models.IntegerField(null=True, blank=True, unique=True, verbose_name=_('Sıralama'))
-    redirect_link = models.URLField(null=True, blank=True, verbose_name=_('Yönlendirme Linki'))
-
-    def menu_list(self):
-        sub_menu_list = SubMenu.objects.filter(topMenu=self)
-        return sub_menu_list
+    @property
+    def icon_url(self):
+        if self.icon and hasattr(self.icon, 'url'):
+            return self.icon.url
 
     class Meta:
-        verbose_name = _('Menü')
-        verbose_name_plural = _('Menü')
+        verbose_name = _('Değer Sayaç')
+        verbose_name_plural = _('Değer Sayaç')
         default_permissions = ()
         permissions = ((_('liste'), _('Listeleme Yetkisi')),
                        (_('sil'), _('Silme Yetkisi')),
@@ -102,24 +130,27 @@ class Menu(OneTextField):
                        (_('guncelle'), _('Güncelleme Yetkisi')))
 
 
-# bu modeli kullanan modeller admin panelinde konfügre edilmelidir
-class SubMenu(OneTextField):
-    topMenu = models.ForeignKey(Menu, on_delete=models.PROTECT, verbose_name=_("Menü"), related_name='sub_menus')
-    view_name = models.CharField(max_length=200, null=True, blank=True,
-                                 verbose_name="Görünüm Adı", )
-    alignment = models.IntegerField(null=True, validators=[MinValueValidator(0)], blank=True,
-                                    verbose_name=_('Sıralama'))
-    slug = models.SlugField(max_length=200, unique=True, null=True, blank=True, verbose_name="Slug", )
 
-    def get_absolute_url(self):
-        return reverse(self.view_name, kwargs={'slug': self.slug})
 
-    def __str__(self):
-        return self.text
+
+class AnnouncementSection(OneTextField):
+    
+    summary = models.CharField(max_length=200, blank=True, verbose_name=_('Özet'))
+    Announcements = models.ManyToManyField(Announcement,verbose_name=_('Duyurular'))
+    icon = models.ImageField(upload_to=userDirectoryPath, null=True, blank=True,
+                                    verbose_name=_('İcon Görsel'))
+
+
+
+    @property
+    def icon_url(self):
+        if self.icon and hasattr(self.icon, 'url'):
+            return self.icon.url
 
     class Meta:
-        verbose_name = _('Alt Menü')
-        verbose_name_plural = _('Alt Menü')
+        #ordering = ('date',)
+        verbose_name = _('Duyuru Bölümü')
+        verbose_name_plural = _('Duyuru Bölümü')
         default_permissions = ()
         permissions = ((_('liste'), _('Listeleme Yetkisi')),
                        (_('sil'), _('Silme Yetkisi')),
