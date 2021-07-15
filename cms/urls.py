@@ -30,7 +30,7 @@ urlpatterns = i18n_patterns(
     path('super/user/', admin.site.urls),
 
     path('', main, name='mainPage'),
-    path('account', accounts, name='accounts'),
+    path('account/', accounts, name='accounts'),
 
     path('test/', test, name='test'),
     path(_('rosetta/'), include('rosetta.urls')),
