@@ -1,59 +1,59 @@
 <!DOCTYPE html>
-{% load i18n %}
-{% load static %}
-{% load crispy_forms_tags %}
-<html lang="tr">
-<head>
-    <!-- Basic -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="en">
+{% load i18n %} {% load static %} {% load crispy_forms_tags %}
 
-    <title>{{ site_info.text}}</title>
-
-    <meta name="keywords" content="{{ site_info.keywords}}"/>
-    <meta name="description" content="{{ site_info.description}}">
-    <meta name="author" content="{{ site_info.author}}">
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ site_info.favicon_url }}" type="image/x-icon"/>
-    <link rel="apple-touch-icon" href="{{ site_info.favicon_url }}">
-
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
-
-    <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;600;700;800;900&display=swap"
-          rel="stylesheet">
-    <!-- Web Fonts  -->
-    <link id="googleFonts"
-          href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800%7CShadows+Into+Light&display=swap"
-          rel="stylesheet" type="text/css">
-
-
+{% block head %}{% include 'partials/head.html' %}  {% endblock head %}
+	<body>
+		<div class="body">
     {% block extra_css %}
+    
+    
+    
+     {% endblock %}
+
+    {% block header %} {% include 'partials/header.html' %} {% endblock %}
+    
+
+    {% block content %} 
+
+
+
+     {% endblock %}
+    
+    {% block footer %} 
+    
+        {% include 'partials/footer.html' %} 
+      
     {% endblock %}
+</div>
 
-</head>
-<body>
+{% block scripts %}
+<script data-cfasync="false" src="{% static '/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script><script src="{% static 'vendor\jquery\jquery.min.js' %}"></script>		<script src="{% static 'vendor\jquery.appear\jquery.appear.min.js' %}"></script>		<script src="{% static 'vendor\jquery.easing\jquery.easing.min.js' %}"></script>		<script src="{% static 'vendor\jquery.cookie\jquery.cookie.min.js' %}"></script>		<script src="{% static 'master\style-switcher\style.switcher.js' %}" id="styleSwitcherScript" data-base-path="" data-skin-src=""></script>		<script src="{% static 'vendor\popper\umd\popper.min.js' %}"></script>		<script src="{% static 'vendor\bootstrap\js\bootstrap.min.js' %}"></script>		<script src="{% static 'vendor\common\common.min.js' %}"></script>		<script src="{% static 'vendor\jquery.validation\jquery.validate.min.js' %}"></script>		<script src="{% static 'vendor\jquery.easy-pie-chart\jquery.easypiechart.min.js' %}"></script>		<script src="{% static 'vendor\jquery.gmap\jquery.gmap.min.js' %}"></script>		<script src="{% static 'vendor\jquery.lazyload\jquery.lazyload.min.js' %}"></script>		<script src="{% static 'vendor\isotope\jquery.isotope.min.js' %}"></script>		<script src="{% static 'vendor\owl.carousel\owl.carousel.min.js' %}"></script>		<script src="{% static 'vendor\magnific-popup\jquery.magnific-popup.min.js' %}"></script>		<script src="{% static 'vendor\vide\jquery.vide.min.js' %}"></script>		<script src="{% static 'vendor\vivus\vivus.min.js' %}"></script>
+		
+		<!-- Theme Base, Components and Settings -->
+		<script src="{% static 'js\theme.js' %}"></script>
+		
+		<!-- Current Page Vendor and Views -->
+		<script src="{% static 'vendor\rs-plugin\js\jquery.themepunch.tools.min.js' %}"></script>		<script src="{% static 'vendor\rs-plugin\js\jquery.themepunch.revolution.min.js' %}"></script>		<script src="{% static 'vendor\circle-flip-slideshow\js\jquery.flipshow.min.js' %}"></script>		<script src="{% static 'js\views\view.home.js' %}"></script>
+		
+		<!-- Theme Custom -->
+		<script src="{% static 'js/custom.js' %}"></script>
+		
+		<!-- Theme Initialization Files -->
+		<script src="{% static 'js\theme.init.js' %}"></script>
 
-
-{% block header %}
-{% include 'partials/header.html' %}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144641236-1"></script>
 {% endblock %}
-{% block content %}
-
-{% endblock %}
-{% block footer %}
-
-{% include 'partials/footer.html' %}
-
-{% endblock %}
-
-<!-- LOADING AREA  END ====== -->
 
 {% block extra_script %}
-{% endblock %}
-</body>
-</html>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144641236-1');
+</script>
+{% endblock extra_script %}
+
+

@@ -1,2 +1,112 @@
-{% load i18n %}
-{% load static %}
+{% load i18n %} {% load static %}
+<footer id="footer">
+    <div class="container">
+        <div class="footer-ribbon">
+            <span>Deneyap</span>
+        </div>
+        <div class="row py-5 my-4">
+            <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                <h5 class="text-3 mb-3">Bülten</h5>
+                <p class="pr-1">Bizden haberdar olun!</p>
+                <div class="alert alert-success d-none" id="newsletterSuccess">
+                    <strong>Tebrikler!</strong> kaydınız Başarıyla Alındı.
+                </div>
+                <div class="alert alert-danger d-none" id="newsletterError"></div>
+                <form id="newsletterForm" action="mail.php" method="POST" class="mr-4 mb-3 mb-md-0">
+                    <div class="input-group input-group-rounded">
+                        <input class="form-control form-control-sm bg-light" placeholder="Email Adresiniz"
+                               name="newsletterEmail" id="newsletterEmail" type="text">
+                        <span class="input-group-append">
+<button class="btn btn-light text-color-dark" type="submit">
+<strong>Ekleyin!</strong></button>
+</span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 col-lg-6 mb-4 mb-md-0">
+                <div class="contact-details">
+                    <h5 class="text-3 mb-3">İletişim</h5>
+                    <ul class="list list-icons list-icons-lg">
+                        <li class="mb-1">
+                            <i class="far fa-dot-circle text-color-primary"></i>
+                            <p class="m-0">{{ site_info.address }}</p>
+                        </li>
+                        <li class="mb-1"><i class="fab fa-whatsapp text-color-primary"></i>
+                            <p class="m-0"><a href="tel:{{ site_info.phone }}">{{ site_info.phone }}</a>
+                            </p></li>
+                        <li class="mb-1">
+                            <i class="far fa-envelope text-color-primary"></i>
+                            <p class="m-0"><a
+                                    href="mailto:{{ site_info.email }}"><span
+                                    class="__cf_email__"
+                                    data-cfemail="593d3c373c203829192d2c2b3230203c2d3c323736353633302d383230343077362b3e">{{ site_info.email }}</span></a>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-2">
+                <h5 class="text-3 mb-3">Takip Edin</h5>
+                <ul class="social-icons">
+
+                    <li class="social-icons-facebook"><a href="{{ site_info.facebook }}"
+                                                         target="_blank" title="Facebook"><i
+                            class="fab fa-facebook-f"></i></a></li>
+                    <li class="social-icons-twitter"><a href="{{ site_info.twitter }}" target="_blank"
+                                                        title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                    <li class="social-icons-instagram"><a href="{{ site_info.instagram }}"
+                                                          target="_blank" title="Instagram"><i
+                            class="fab fa-instagram"></i></a></li>
+                    <li class="social-icons-linkedin"><a
+                            href="{{ site_info.linkedin }}" target="_blank"
+                            title="linkedin"><i class="fab fa-linkedin"></i></a></li>
+                    <li class="social-icons-youtube"><a href="{{ site_info.youtube }}"
+                                                        target="_blank" title="youtube"><i
+                            class="fab fa-youtube"></i></a></li>
+                    <li class="social-icons-telegram"><a href="{{ site_info.telegram }}" target="_blank"
+                                                         title="Telegram"><i
+                            class="fab fa-telegram"></i></a></li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container py-2">
+
+            <div style="color:#FFF; text-align:center;">
+                <strong>Diğer Web Sitelerimiz</strong>
+            </div>
+
+            <div style="text-align:center;">
+                {% for web_site in web_sites %}
+
+                    <a href="{{ web_site.site_url }}" title="{{ web_site.text }}" target="_blank"><img
+                            src="{{ web_site.logo_url }}"/></a>
+
+                {% endfor %}
+
+            </div>
+
+
+            <div class="row py-4">
+                <div class="col-lg-7 d-flex align-items-center justify-content-center justify-content-lg-start mb-4 mb-lg-0">
+                    <p>© {{ site_info.copyright }}</p></div>
+                <div class="col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-end">
+                    <nav id="sub-menu">
+                        <ul>
+                            <li><i class="fas fa-angle-right"></i><a
+                                    href="{% url 'content:kvkk' %}"
+                                    class="ml-1 text-decoration-none">KVKK</a></li>
+                            <li><i class="fas fa-angle-right"></i><a href="{% url 'content:sss' %}" class="ml-1 text-decoration-none">
+                                S.S.S.</a></li>
+                            <li><i class="fas fa-angle-right"></i><a href="{% url 'content:communication' %}"
+                                                                     class="ml-1 text-decoration-none">İletişim</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

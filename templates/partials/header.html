@@ -1,2 +1,124 @@
-{% load i18n %}
-{% load static %}
+{% load i18n %} {% load static %}
+
+<header id="header" class="header-effect-shrink"
+        data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyChangeLogo': true, 'stickyStartAt': 120, 'stickyHeaderContainerHeight': 70}">
+    <div class="header-body border-top-0" style="position: fixed; top: 0px;">
+        <div class="header-top header-top-default border-bottom-0 bg-color-primary"
+             style="height: 52px; min-height: 0px; overflow: visible;">
+            <div class="container">
+                <div class="header-row py-2">
+
+
+                    <div class="header-column justify-content-start">
+                        <div class="header-row">
+                            <nav class="header-nav-top">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item "><a href="#" data-toggle="modal"
+                                                             data-target="#exampleModalLong"
+                                                             class="nav-link pl-0 text-light" style="color: #000;"
+                                                             target="_blank"><strong style="color: #000;"><i
+                                            class="fas fa-angle-right"></i> Deneyap eğitmeni olmak ister misin?</strong></a>
+                                    </li>
+                                    <!-- Modal -->
+
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+
+                    <div class="header-column justify-content-end">
+                        <div class="header-row">
+                            <nav class="header-nav-top">
+                                <ul class="header-social-icons social-icons d-none d-sm-block social-icons-clean">
+                                    <a href="https://www.deneyapturkiye.org/" target="_blank"> <img
+                                            src="{% static 'img/deneyaptürkiyelogo-01.png' %}"
+                                            style="    width: 163px;"></a>
+                                    <li class="social-icons-facebook"><a
+                                            href="https://www.facebook.com/deneyapturkiyee/" target="_blank"
+                                            title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li class="social-icons-twitter"><a href="https://twitter.com/DeneyapTurkiye"
+                                                                        target="_blank" title="Twitter"><i
+                                            class="fab fa-twitter"></i></a></li>
+                                    <li class="social-icons-instagram"><a
+                                            href="https://www.instagram.com/deneyapturkiye/?hl=en" target="_blank"
+                                            title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                    <li class="social-icons-linkedin"><a
+                                            href="https://www.linkedin.com/in/deneyapturkiye/?originalSubdomain=tr"
+                                            target="_blank" title="linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                    <li class="social-icons-youtube"><a
+                                            href="https://www.youtube.com/channel/UCYt9nXKzDdLSBbngvpGnZTw"
+                                            target="_blank" title="youtube"><i class="fab fa-youtube"></i></a></li>
+                                    <li class="social-icons-telegram"><a href="https://t.me/Deneyap" target="_blank"
+                                                                         title="Telegram"><i
+                                            class="fab fa-telegram"></i></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-container container" style="height: 100px; min-height: 0px;">
+            <div class="header-row">
+                <div class="header-column">
+                    <div class="header-row">
+                        <div class="header-logo" style="width: 100px; height: 48px;">
+                            <a href="/">
+                                <img data-sticky-width="242" data-sticky-height="171"
+                                     src="{% static 'img/yeni-logo.png' %}"
+                                     style="top: 0px;width: 242px;height: 171px;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-column justify-content-end">
+                    <div class="header-row">
+                        <div class="header-nav header-nav-links order-2 order-lg-1">
+                            <div class="header-nav-main header-nav-main-square header-nav-main-effect-2 header-nav-main-sub-effect-1">
+                                <nav class="collapse">
+                                    <ul class="nav nav-pills" id="mainNav">
+                                        {% for header_menu in header_menu_list %}
+                                            {% if header_menu.view_name %}
+                                                <li><a href="{{ header_menu.view_name }}">{{ header_menu.text }}</a>
+                                                </li>
+                                            {% elif header_menu.redirect_link %}
+                                                <li style="   background-color: red;    color: #fff;">
+                                                    <a href="{{ header_menu.redirect_link }}"
+                                                       style="color: #fff;">{{ header_menu.text }}</a>
+                                                </li>
+                                            {% else %}
+                                                <li class="dropdown">
+
+                                                    <a class="dropdown-item dropdown-toggle"
+                                                       href="#">{{ header_menu.text }}</a>
+                                                    <ul class="dropdown-menu">
+                                                        {% for sub_menu in header_menu.menu_list %}
+                                                            <li><a class="dropdown-item" {% if sub_menu.slug %}
+                                                                   href="{{ sub_menu.get_absolute_url }}" style=""
+                                                            {% else %}
+                                                                   href="{% url  sub_menu.view_name %}" style=""
+                                                            {% endif %} >{{ sub_menu.text|upper }}</a></li>
+                                                        {% endfor %}
+
+                                                    </ul>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                    </ul>
+                                </nav>
+                            </div>
+                            <button class="btn header-btn-collapse-nav" data-toggle="collapse"
+                                    data-target=".header-nav-main nav">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

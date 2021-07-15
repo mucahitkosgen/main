@@ -1,11 +1,13 @@
 from django.contrib import admin
-from .models import *
+
 from translations.admin import TranslatableAdmin, TranslationInline
 
-# Register your models here.
-admin.site.register(Menu)
-admin.site.register(SubMenu)
+from apps.parameter.models import TimeCounter, ValueCounter, ValueCounterBox,   \
+    AnnouncementSection
+#
+# admin.site.register(TimeCounter)
+# admin.site.register(ValueCounter)
+# admin.site.register(ValueCounterBox)
+#
+# admin.site.register(AnnouncementSection)
 
-admin.site.register(SiteInfo)
-admin.site.register(MenuLocation)
-admin.site.register(Slider)
